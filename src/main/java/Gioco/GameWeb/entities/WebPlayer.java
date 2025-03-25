@@ -2,6 +2,7 @@ package Gioco.GameWeb.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -15,6 +16,7 @@ import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "players")
+@AllArgsConstructor
 @NoArgsConstructor
 @Data
 public class WebPlayer  {

@@ -4,11 +4,14 @@ import Gioco.GameWeb.authorization.AuthResponse;
 import Gioco.GameWeb.authorization.RegisterRequest;
 import Gioco.GameWeb.entities.Role;
 import Gioco.GameWeb.entities.WebPlayer;
+import Gioco.GameWeb.entities.WebPlayerResponse;
+import Gioco.GameWeb.entities.WebPlayerUpdateRequest;
 import Gioco.GameWeb.jwt.JwtTokenUtil;
 import Gioco.GameWeb.repositories.WebPlayerRepository;
 
 import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -18,6 +21,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -72,9 +76,9 @@ public class WebPlayerService {
         }
     }
 
-    public WebPlayer findById(Long id) {
-        return webPlayerRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Utente non trovato con id: " + id));
+    public WebPlayerResponse findById(Long id) {
+        return webPlayerResponseFromEntity(webPlayerRepository.findById(id) .orElseThrow(() -> new EntityNotFoundException("Utente non trovato con id: " + id)));
+
     }
 
     public WebPlayer loadUserByUsername(String username)  {
@@ -92,5 +96,39 @@ public class WebPlayerService {
         webPlayerRepository.save(webPlayer);
     }
 
+    public WebPlayerResponse webPlayerResponseFromEntity(WebPlayer webPlayer) {
+        WebPlayerResponse webPlayerResponse = new WebPlayerResponse();
+        BeanUtils.copyProperties(webPlayer, webPlayerResponse);
+        return webPlayerResponse;
+    }
+
+    public List<WebPlayerResponse> webPlayerResponsesListFromEntityList(List<WebPlayer> webPlayer) {
+        return webPlayer.stream()
+                .map(this::webPlayerResponseFromEntity)
+                .toList();
+    }
+
+    public List<WebPlayerResponse> findAll() {
+        return webPlayerResponsesListFromEntityList(webPlayerRepository.findAll());
+    }
+
+    public void registerMain(String username, String password, Set<Role> roles) {
+        WebPlayer webPlayer = new WebPlayer();
+        webPlayer.setUsername(username);
+        webPlayer.setPassword(passwordEncoder.encode(password));
+        webPlayer.setRoles(roles);
+        webPlayerRepository.save(webPlayer);
+    }
+
+    public WebPlayerResponse update(Long id, WebPlayerUpdateRequest webPlayerUpdateRequest) {
+        WebPlayer webPlayer = webPlayerRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Utente non trovato con id: " + id));
+        BeanUtils.copyProperties(webPlayerUpdateRequest, webPlayer);
+        return webPlayerResponseFromEntity(webPlayerRepository.save(webPlayer));
+    }
+
+    public void delete(Long id) {
+        webPlayerRepository.deleteById(id);
+    }
 
 }

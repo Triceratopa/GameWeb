@@ -25,14 +25,16 @@ public class AuthRunner implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
 
-
+        Optional<WebPlayer> adminUser = webPlayerService.findByUsername("admin");
+        if (adminUser.isEmpty()) {
+            webPlayerService.registerMain("admin", "adminpwd", Set.of(Role.ROLE_ADMIN));
+        }
 
         // Creazione dell'utente user se non esiste
         Optional<WebPlayer> normalUser = webPlayerService.findByUsername("user");
         if (normalUser.isEmpty()) {
-            webPlayerService.registerUser(new RegisterRequest("user", "userpwd", "Gatta" , "Grassa", "gatta.g@gmail.com") );
+            webPlayerService.registerUser(new RegisterRequest("user", "userpwd", "Gatta", "gatta.g@gmail.com", "Grassa"));
         }
-
 
 
     }
