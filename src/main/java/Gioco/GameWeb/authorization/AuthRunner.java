@@ -1,8 +1,8 @@
 package Gioco.GameWeb.authorization;
 
 
-import Gioco.GameWeb.entities.Role;
-import Gioco.GameWeb.entities.WebPlayer;
+import Gioco.GameWeb.webPlayerEntity.Role;
+import Gioco.GameWeb.webPlayerEntity.WebPlayer;
 import Gioco.GameWeb.services.WebPlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;

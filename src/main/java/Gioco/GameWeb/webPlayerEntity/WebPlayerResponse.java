@@ -1,4 +1,4 @@
-package Gioco.GameWeb.entities;
+package Gioco.GameWeb.webPlayerEntity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

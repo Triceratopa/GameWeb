@@ -1,4 +1,4 @@
-package Gioco.GameWeb.entities;
+package Gioco.GameWeb.webPlayerEntity;
 
 public enum Role {
     ROLE_USER,

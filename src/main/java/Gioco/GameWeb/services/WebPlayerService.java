@@ -2,10 +2,10 @@ package Gioco.GameWeb.services;
 
 import Gioco.GameWeb.authorization.AuthResponse;
 import Gioco.GameWeb.authorization.RegisterRequest;
-import Gioco.GameWeb.entities.Role;
-import Gioco.GameWeb.entities.WebPlayer;
-import Gioco.GameWeb.entities.WebPlayerResponse;
-import Gioco.GameWeb.entities.WebPlayerUpdateRequest;
+import Gioco.GameWeb.webPlayerEntity.Role;
+import Gioco.GameWeb.webPlayerEntity.WebPlayer;
+import Gioco.GameWeb.webPlayerEntity.WebPlayerResponse;
+import Gioco.GameWeb.webPlayerEntity.WebPlayerUpdateRequest;
 import Gioco.GameWeb.jwt.JwtTokenUtil;
 import Gioco.GameWeb.repositories.WebPlayerRepository;
 

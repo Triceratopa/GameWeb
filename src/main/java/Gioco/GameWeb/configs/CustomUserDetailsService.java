@@ -1,6 +1,6 @@
 package Gioco.GameWeb.configs;
 
-import Gioco.GameWeb.entities.WebPlayer;
+import Gioco.GameWeb.webPlayerEntity.WebPlayer;
 import Gioco.GameWeb.repositories.WebPlayerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

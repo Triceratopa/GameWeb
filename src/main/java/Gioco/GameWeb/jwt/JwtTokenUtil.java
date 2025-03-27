@@ -1,6 +1,5 @@
 package Gioco.GameWeb.jwt;
 
-import Gioco.GameWeb.entities.WebPlayer;
 import Gioco.GameWeb.repositories.WebPlayerRepository;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
