@@ -31,12 +31,8 @@ La repository del frontend è : 'https://github.com/Triceratopa/Gioco'
 
 La repository del backend è : 'https://github.com/Triceratopa/GameWeb'
 
-### 1️⃣ Installare le dipendenze del frontend
-```bash
-cd ../nome-del-progetto
-npm install
-```
-### 2️⃣ Avviare il progetto
+
+### 1️⃣ Avviare il progetto
 ```bash
 npm start
 ```
