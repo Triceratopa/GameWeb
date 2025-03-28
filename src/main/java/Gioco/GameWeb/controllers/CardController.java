@@ -28,7 +28,7 @@ public class CardController {
     @PreAuthorize("hasRole('ADMIN')")
     @ResponseStatus(HttpStatus.CREATED)
     public Card save(@RequestBody CardRequest cardRequest) {return cardService.save(cardRequest); }
-    @PutMapping
+    @PutMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     @ResponseStatus(HttpStatus.OK)
     public Card update(@PathVariable Long id,@RequestBody CardRequest cardRequest) {return cardService.update(id,cardRequest); }
